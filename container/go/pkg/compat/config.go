@@ -181,7 +181,7 @@ func (s *Stamper) StampAll(vals []string) []string {
 // uniquify uniquifies the substitutions in the given stamper. If a key appears
 // multiple times, the latest entry for the key will be preserved and the
 // earlier entries discarded.
-func (s *Stamper) uniquify() {f
+func (s *Stamper) uniquify() {
 	lookup := make(map[string]bool)
 	reverseSubs := []stampSubstitution{}
 	// Scan in reverse order rejecting duplicates.
