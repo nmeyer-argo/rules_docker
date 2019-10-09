@@ -129,10 +129,7 @@ func keyValueToMap(value []string) (map[string]string, error) {
 	convMap := make(map[string]string)
 	var temp []string
 	for _, kvpair := range value {
-		temp = strings.Split(kvpair, "=")
-		if len(temp) != 2 {
-			return convMap, errors.New(fmt.Sprintf("%q is not of format key=value", kvpair))
-		}
+		temp = strings.SplitN(kvpair, "=", 2)
 		key, val := temp[0], temp[1]
 		convMap[key] = val
 	}
@@ -184,7 +181,7 @@ func (s *Stamper) StampAll(vals []string) []string {
 // uniquify uniquifies the substitutions in the given stamper. If a key appears
 // multiple times, the latest entry for the key will be preserved and the
 // earlier entries discarded.
-func (s *Stamper) uniquify() {
+func (s *Stamper) uniquify() {f
 	lookup := make(map[string]bool)
 	reverseSubs := []stampSubstitution{}
 	// Scan in reverse order rejecting duplicates.
